@@ -63,6 +63,6 @@ By default, ICSim uses the same arbitration IDs every time it starts. These arbi
 Before running these commands, close the ICSim and controls windows to stop the programs.
 
 ````sh
-./icsim -s 42 vcan0     # Starts ICSim using the seed number 42 (the number can be any number)
-./controls -s 42 vcan0  # Starts the controls using the same seed
+./icsim -s 42 vcan0 &     # Starts ICSim using the seed number 42 (the number can be any number)
+./controls -s 42 vcan0 &  # Starts the controls using the same seed
 ````
