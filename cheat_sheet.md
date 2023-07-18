@@ -50,6 +50,7 @@ tail candump-2023-07-17.log  # View the end of the log file
 
 ```sh
 cangen vcan0                         # Generate random CAN messages on the vcan0 network
+cangen vcan0 -I 445                  # Generate random CAN data with the arbitration ID 445 only
 cansequence vcan0                    # Sends CAN messages with the payload constantly increasing (i.e., not random)
 canplayer -I candump-2023-07-17.log  # Replay network traffic 
 cansend vcan0 188#01                 # Sends the blinker signal to the ICSim vehicle
