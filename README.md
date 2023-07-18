@@ -8,3 +8,5 @@ The focus will be on setting up and using the following tools in Linux:
 - can-utils
 
 See the [cheat sheet](cheat_sheet.md)
+
+See a sample [python program](cansend_sample.py) that sends data using cansend.
