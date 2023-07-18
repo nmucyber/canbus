@@ -25,9 +25,15 @@ ICSim and the can-utils must be installed before these commands will work.
 
 ```sh
 cd ~/ICSim
-sudo sh setup_vcan.sh # Create the vcan0 network device
-./icsim vcan0 & # Launches the virtual car
-./controls vcan0 & # Launches the controller
+sudo sh setup_vcan.sh   # Create the vcan0 network
+                        # If there is no output, the command likely worked fine.
+                        # A message, "RTNETLINK answers: File exists" likely means that the vcan0 network was already created.
+                        # Use ifconfig to verify if vcan0 exists
+ifconfig                # If the setup_vcan.sh command was successful, a vcan0 network device should appear
+./icsim vcan0 &         # Launches the virtual car
+                        # The & at the end lets you run more commands in the terminal after this command.
+                        # You may need to press [enter] after seeing the message like, "Using CAN interface vcan0"
+./controls vcan0 &      # Launches the game-like controller that sends messages on the vcan0 network
 ```
 
 # Viewing and Capturing CAN Network Traffic
@@ -42,6 +48,7 @@ tail candump-2023-07-17.log  # View the end of the log file
 
 ```sh
 cangen vcan0                         # Generate random CAN messages on the vcan0 network
+cansequence vcan0                    # Sends CAN messages with the payload constantly increasing (i.e., not random)
 canplayer -I candump-2023-07-17.log  # Replay network traffic 
 cansend vcan0 188#01                 # Sends the blinker signal to the ICSim vehicle
 ```
