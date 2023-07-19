@@ -1,3 +1,8 @@
+# Created by Dr. Jim Marquardson
+# Initial commit: 7/18/2023
+# Last updated: 7/19/2023
+# License: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication (https://creativecommons.org/publicdomain/zero/1.0/)
+# Use, modify, and distribute this code as you see fit.
 from subprocess import call
 import sys
 import time
