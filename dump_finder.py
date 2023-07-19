@@ -7,7 +7,7 @@ from subprocess import call
 import sys
 import time
 
-SLEEP_TIME = 0.1 # Time between commands
+SLEEP_TIME = 0.01 # Sleep time between commands in seconds
 
 if len(sys.argv) < 2: #0 is script name, 1 is the dump file
 	print("Please provide a file name.")
@@ -30,7 +30,7 @@ def run_code(message):
     call(["cansend", message[0], message[1]])
 
 print("Looking for the needle in the haystack.")
-trial_size = min(48, len(messages)//2) # Number of packets to try at a time at first
+trial_size = min(480, len(messages)//2) # Number of packets to try at a time at first
 while True:
     trial = messages[-trial_size:]
     for t in trial:
