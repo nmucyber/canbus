@@ -1,6 +1,6 @@
 # CANBUS Cheat Sheet
 
-# ICSim & can-utils setup
+## ICSim & can-utils setup
 
 These steps can  be run on Kali, Ubuntu, and other Linux platforms.
 
@@ -19,7 +19,7 @@ make clean
 make
 ```
 
-# Start the ICSimulator and controller
+## Start the ICSimulator and controller
 
 ICSim and the can-utils must be installed before these commands will work.
 
@@ -38,26 +38,35 @@ ifconfig                # If the setup_vcan.sh command was successful,
 ./controls vcan0 &      # Launches the game-like controller that sends messages on the vcan0 network
 ```
 
-# Viewing and Capturing CAN Network Traffic
+## Viewing and Capturing CAN Network Traffic
+
+Two important tools for viewing and capturing CAN data are:
+
+- cansniffer: Good for displaying CAN messages in real-time. Ensure your terminal window is tall enough to display all active rows of data.
+- candump: Good for recording a large amount of CAN data to a log file.
 
 ```sh
 cansniffer -c vcan0          # Show live network traffic, -c shows colors
 candump -l vcan0             # Capture all CAN network traffic to a log file
 tail candump-2023-07-17.log  # View the end of the log file
+ls candump*.log              # List candump log files
 ```
 
-# Generating Traffic
+## Generating Traffic
+
+Once connected to a CAN network (using sudo sh setup_van.sh), these commands will generate CAN traffic.
 
 ```sh
 cangen vcan0                         # Generate random CAN messages on the vcan0 network
 cangen vcan0 -I 445                  # Generate random CAN data with the arbitration ID 445 only
+cangen vcan0 -I 445 -L 8             # Generate random CAN data using a specific arbitration  ID & content length
 cansequence vcan0                    # Sends CAN messages with the payload constantly increasing (i.e., not random)
 canplayer -I candump-2023-07-17.log  # Replay network traffic 
 cansend vcan0 188#01                 # Sends the blinker signal to the ICSim vehicle
 ```
 
 
-# Starting ICSim with Different Seeds
+## Starting ICSim with Different Seeds
 
 By default, ICSim uses the same arbitration IDs every time it starts. These arbitration IDs can be randomized to add challenges.
 
