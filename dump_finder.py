@@ -30,7 +30,7 @@ def run_code(message):
     call(["cansend", message[0], message[1]])
 
 print("Looking for the needle in the haystack.")
-trial_size = min(480, len(messages)//2) # Number of packets to try at a time at first
+trial_size = min(1000, len(messages)//2) # Number of packets to try at a time at first
 while True:
     trial = messages[-trial_size:]
     for t in trial:
