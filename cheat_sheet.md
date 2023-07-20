@@ -65,6 +65,22 @@ canplayer -I candump-2023-07-17.log  # Replay network traffic
 cansend vcan0 188#01                 # Sends the blinker signal to the ICSim vehicle
 ```
 
+## Dealing with Noise
+
+CAN traffic can be noisy. The follow ing steps demonstrate a "noise filter" to remove potentially unimportant CAN messages.
+
+````sh
+# Run this while not interacting with the system to capture background traffic.
+candump vcan0 -l -f noise.txt
+# Run this, perform an action, and then stop the capture.
+candump vcan0 -l -f event.txt
+# Eliminate timestamps. (sed replaces the start of the file to the first space with '')
+sed 's/^[^ ]* //' noise.txt > noise_notime.txt
+# Eliminate timestamps
+sed 's/^[^ ]* //' event.txt > event_notime.txt
+# Remove entries from event_notime.txt that exist in noise_notime.txt
+grep -vxFf noise_notime.txt event_notime.txt
+````
 
 ## Starting ICSim with Different Seeds
 
