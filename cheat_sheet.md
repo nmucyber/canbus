@@ -75,11 +75,10 @@ candump vcan0 -l -f noise.txt
 # Run this, perform an action, and then stop the capture.
 candump vcan0 -l -f event.txt
 # Eliminate timestamps. (sed replaces the start of the file to the first space with '')
-sed 's/^[^ ]* //' noise.txt > noise_notime.txt
-# Eliminate timestamps
-sed 's/^[^ ]* //' event.txt > event_notime.txt
-# Remove entries from event_notime.txt that exist in noise_notime.txt
-grep -vxFf noise_notime.txt event_notime.txt
+sed 's/^[^ ]* //' -i noise.txt
+sed 's/^[^ ]* //' -i event.txt
+# Remove entries from event.txt that exist in noise.txt
+grep -vxFf noise.txt event.txt
 ````
 
 ## Starting ICSim with Different Seeds
